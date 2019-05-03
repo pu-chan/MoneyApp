@@ -1,7 +1,7 @@
 from django.views import generic
 from .models import Task
 from django.urls import reverse_lazy
-from .forms import CheckForm
+from django.http.response import HttpResponse
 
 class IndexView(generic.ListView):
     model = Task

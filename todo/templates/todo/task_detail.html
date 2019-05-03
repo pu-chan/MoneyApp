@@ -1,7 +1,7 @@
 {% extends './base.html' %}
 {% block content %}
   <h1>タスクの内容</h1>
-  <p>{{ task.message }}</p>
+  <p>{{ task.category }}</p>
 
   <div>
     <a href='{% url "todo:index" %}' class='btn btn-outline-primary'>一覧</a>

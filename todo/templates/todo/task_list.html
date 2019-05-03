@@ -1,32 +1,47 @@
 {% extends './base.html' %}
 {% block content %}
-  <h1>*今日やること*</h1>
-  <table class='table table-striped table-hover'>
-    {% for task in object_list %}
-      <tr>
-        <td>
-          <form action='' method='post'>{% csrf_token %}
-            {{ task.completed }}
-          </form>
-        </td>
-        <td>
-          {{ task.message }}
-          <a href='{% url "todo:update" task.pk %}' class='btn btn-outline-primary float-right'>編集</a>
-          <form action='{% url "todo:delete" task.pk %}' method='post' class='d-inline'>{% csrf_token %}
-            <button class='btn btn-outline-secondary float-right'>削除</button>
-          </form>
-        </td>
-      </tr>
-    {% endfor %}
-  </table>
+  <!-- css -->
+  <style type="text/css">
+    .embed-responsive-item {
+      display: block;
+      margin: 0 auto;
+    }
+  </style>
+  <!-- Taskテーブル -->
+  <section>
+    <h1 class="pb-3"><i class="fas fa-yen-sign mr-2"></i>今月の支払い</h1>
+    <div class="row">
+      <div class="col-md-8">
+        <table class='table table-striped table-hover'>
+          <tr>
+            <th scope="col" class="pl-5">支払項目</th>
+          </tr>
+          {% for task in object_list %}
+          <tr>
+            <td class="pl-5">
+              {{ task.category }}
+              <a href='{% url "todo:update" task.pk %}' class='btn btn-outline-secondary float-right'><i class="fas fa-star-of-david mr-2"></i>編集</a>
+              <form action='{% url "todo:delete" task.pk %}' method='post' class='d-inline'>{% csrf_token %}
+                <button class='btn btn-outline-danger float-right'><i class="fas fa-kiss-wink-heart mr-2"></i>削除</button>
+              </form>
+            </td>
+          </tr>
+          {% endfor %}
+        </table>
+        <div class='pb-3'>
+          <a href='{% url "todo:create" %}' class='btn btn-outline-secondary'><i class="fas fa-star-of-david mr-2"></i>新規作成</a>
+        </div>
+      </div>
+      <!-- 天気予報API -->
+      <div class="col-md-4">
+        <iframe class="embed-responsive-item border border-warning"
+                id='weathermap'
+                src='https://api.openweathermap.org/data/2.5/weather?q=Kobe&mode=html&appid=df691d3eb3927b60d8e97c3ce81f2f16'
+                height='320'
+                frameborder='10'>
+        </iframe>
+    </div>
+  </section>
 
-  <div class='pb-3'>
-    <a href='{% url "todo:create" %}' class='btn btn-outline-primary'>新しいタスク</a>
-  </div>
-  <iframe class='embed-responsive-item border border-warning'
-    id='weathermap'
-    src='https://api.openweathermap.org/data/2.5/weather?q=Kobe&mode=html&appid=df691d3eb3927b60d8e97c3ce81f2f16'
-    height='320'
-    frameborder='10'>
-  </iframe>
+
 {% endblock %}

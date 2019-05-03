@@ -1,12 +1,90 @@
 {% extends './base.html' %}
 {% block content %}
-  <h1>タスクの{{ object|yesno:'編集,作成' }}</h1>
-  <form action='' method='post'>{% csrf_token %}
-    {{ form.as_p }}
-    <button type='submit' class='submit btn btn-outline-primary'>{{ object|yesno:'編集,作成' }}</button>
-  </form>
-
-  <div>
-    <a href='JavaScript:history.back()' class='submit btn btn-outline-primary'>&lt; 戻る</a>
+<div>
+  <div class="row">
+    <div class="col-md-4">
+      <h1 class="pb-3"><i class="fas fa-edit"></i>{{ object|yesno:'編集,作成' }}内容</h1>
+      <!-- ボタン -->
+      <form action='' method='post'>{% csrf_token %}
+        {{ form.as_p }}
+        <button type='submit' class='submit btn btn-outline-secondary'><i class="fas fa-pencil-alt mr-2"></i>{{ object|yesno:'編集,作成' }}</button>
+      </form>
+      <div>
+        <a href='JavaScript:history.back()' class='submit btn btn-outline-danger'><i class="fas fa-undo mr-2"></i>戻る</a>
+      </div>
+    </div>
+    <div class="col-md-4 p-2">
+      <table class="table table-striped">
+        <thead>
+          <tr class="tr-color">
+            <th scope="col"><i class="fas fa-star-of-david"></i></th>
+            <th scope="col">支払項目</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">住居</th>
+            <td>家賃</td>
+          </tr>
+          <tr>
+            <th scope="row"></th>
+            <td>食費</td>
+          </tr>
+          <tr>
+            <th scope="row"></th>
+            <td>電気代</td>
+          </tr>
+          <tr>
+            <th scope="row"></th>
+            <td>ガス代</td>
+          </tr>
+          <tr>
+            <th scope="row"></th>
+            <td>水道代</td>
+          </tr>
+          <tr>
+            <th scope="row"></th>
+            <td>ネット代</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-4 table-striped p-2">
+      <table class="table">
+        <thead>
+          <tr class="tr-color">
+            <th scope="col"><i class="fas fa-star-of-david"></i></th>
+            <th scope="col">支払項目</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">税・保険</th>
+            <td>健康保険</td>
+          </tr>
+          <tr>
+            <th scope="row"></th>
+            <td>年金</td>
+          </tr>
+          <tr>
+            <th scope="row"></th>
+            <td>住民税</td>
+          </tr>
+          <tr>
+            <th scope="row">その他</th>
+            <td>携帯代</td>
+          </tr>
+          <tr>
+            <th scope="row"></th>
+            <td>カード代</td>
+          </tr>
+          <tr>
+            <th scope="row"></th>
+            <td>奨学金</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
+</div>
 {% endblock %}
